@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is 
+	Metro/2.2.1-1 (tags/2.2.1-1-7267; 2012-08-30T14:04:51+0000) JAXWS-RI/2.2.7 
+	JAXWS/2.2 svn-revision#unknown. -->
+<xs:schema version="1.0" targetNamespace="http://raigo.localhost/"
+	xmlns:tns="http://raigo.localhost/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:ons="http://server.order.idu0080.ttu/">
+
+	<xs:import namespace="http://server.order.idu0080.ttu/"
+		schemaLocation="orders.xsd" />
+
+	<xs:element name="getCouriers" type="tns:getCouriers" />
+	<xs:element name="getCouriersResponse" type="tns:getCouriersResponse" />
+
+	<xs:complexType name="courier">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int" />
+			<xs:element name="name" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getCouriers">
+		<xs:sequence />
+	</xs:complexType>
+	<xs:complexType name="getCouriersResponse">
+		<xs:sequence>
+			<xs:element name="return" type="tns:courier" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="getTransportOffer" type="tns:getTransportOffer"></xs:element>
+	<xs:element name="getTransportOfferResponse" type="tns:getTransportOfferResponse"></xs:element>
+	<xs:complexType name="transportOffer">
+		<xs:sequence>
+			<xs:element name="offerId" type="xs:string"></xs:element>
+			<xs:element name="transportPrice" type="xs:decimal"></xs:element>
+			<xs:element name="deliveryTime" type="xs:integer"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getTransportOffer">
+		<xs:sequence>
+			<xs:element name="courierId" type="xs:int"></xs:element>
+			<xs:element name="order" type="ons:order"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getTransportOfferResponse">
+		<xs:sequence>
+			<xs:element name="transportOffer" type="tns:transportOffer"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="orderTransport" type="tns:orderTransport"></xs:element>
+	<xs:element name="orderTransportResponse" type="tns:orderTransportResponse"></xs:element>
+	<xs:complexType name="orderTransport">
+		<xs:sequence>
+			<xs:element name="offerId" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="orderTransportResponse">
+		<xs:sequence>
+			<xs:element name="trackingNumber" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
